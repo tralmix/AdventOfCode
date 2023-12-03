@@ -6,7 +6,7 @@ public class Part1
     private const string FileName = "Day_01/Input.txt";
 
     [Test]
-    public async Task Part1_ShouldReturn142()
+    public async Task Part1_ShouldReturn_142()
     {
         const long expected = 142;
 
