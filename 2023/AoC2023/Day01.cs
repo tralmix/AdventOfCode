@@ -20,6 +20,7 @@ public partial class Day01
         var part1Answer = await Part1(FileName);
         Console.WriteLine($"The sum of the calibration values is {part1Answer}.");
 
+        // Getting 55189 but answer is too low.
         var part2Answer = await Part2(FileName);
         Console.WriteLine($"The sum of the updated calibration values is {part2Answer}.");
 
@@ -28,19 +29,19 @@ public partial class Day01
 
     public static async Task<long> Part1(string fileName)
     {
-        var result = await Run(fileName, Part1Regex());
+        var result = await CalculateCalibration(fileName, Part1Regex());
 
         return result;
     }
 
     public static async Task<long> Part2(string fileName)
     {
-        var result = await Run(fileName, Part2Regex());
+        var result = await CalculateCalibration(fileName, Part2Regex());
 
         return result;
     }
 
-    private static async Task<long> Run(string fileName, Regex regex)
+    private static async Task<long> CalculateCalibration(string fileName, Regex regex)
     {
         var input = await ParseFile(fileName);
 
@@ -67,28 +68,30 @@ public partial class Day01
 
         var result = BuildNumber(first, last);
 
+        //Console.WriteLine($"Input {input} \n\tmatched on {numbers[0].Value} & {numbers[^1].Value} \n\tresulting in calibration value {result}");
+
         return result;
     }
 
-    private static int BuildNumber(string first, string second)
+    private static int BuildNumber(int first, int second)
     {
-        return int.Parse(first + second);
+        return first * 10 + second;
     }
 
-    private static string ParseLexicalNumber(string input)
+    private static int ParseLexicalNumber(string input)
     {
         return input switch
         {
-            "one" => "1",
-            "two" => "2",
-            "three" => "3",
-            "four" => "4",
-            "five" => "5",
-            "six" => "6",
-            "seven" => "7",
-            "eight" => "8",
-            "nine" => "9",
-            _ => input
+            "one" => 1,
+            "two" => 2,
+            "three" => 3,
+            "four" => 4,
+            "five" => 5,
+            "six" => 6,
+            "seven" => 7,
+            "eight" => 8,
+            "nine" => 9,
+            _ => int.Parse(input)
         };
     }
 }
