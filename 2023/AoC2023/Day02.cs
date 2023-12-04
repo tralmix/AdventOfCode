@@ -17,8 +17,8 @@ public class Day02
         var part1Answer = await Part1(FileName);
         Console.WriteLine($"The sum of the game ids is {part1Answer}.");
 
-        //var part2Answer = await Part2(FileName);
-        //Console.WriteLine($"The sum of the updated calibration values is {part2Answer}.");
+        var part2Answer = await Part2(FileName);
+        Console.WriteLine($"The sum of the powers for each game is {part2Answer}.");
 
         Console.WriteLine();
     }
@@ -40,7 +40,11 @@ public class Day02
 
     public static async Task<long> Part2(string fileName)
     {
-        throw new NotImplementedException();
+        var games = await ParseFile(fileName);
+
+        var result = games.Select(_ => _.Power).Sum();
+
+        return result;
     }
 
     private static async Task<List<Game>> ParseFile(string fileName)
@@ -106,6 +110,8 @@ public class Day02
         public int MaxBlue => Sets.Select(_=> _.Blue).Max();
         public int MaxGreen => Sets.Select(_=> _.Green).Max();
         public int MaxRed => Sets.Select(_=> _.Red).Max();
+
+        public int Power => MaxBlue * MaxGreen * MaxRed;
     }
 
     public class Set
