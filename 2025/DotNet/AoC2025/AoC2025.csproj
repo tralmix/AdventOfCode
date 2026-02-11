@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="..\..\..\Inputs\Day01.txt" Link="Inputs\Day01.txt">
+    <Content Include="..\..\Inputs\Day01.txt" Link="Inputs\Day01.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
