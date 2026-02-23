@@ -32,6 +32,7 @@ for line in lines:
         if position < 0:
             position += 100
 
+    # Moving right
     if direction == 'R':
         position += distance % 100
         if position > 99:
@@ -41,3 +42,38 @@ for line in lines:
         times_at_zero += 1
 
 print(f'Day 01 - Part 1: {times_at_zero}')
+
+# Reset and run Part 2
+position = 50 # This is our starting position
+times_at_zero = 0
+
+for line in lines:
+    direction, distance = parse_line(line)
+
+    full_loops = int(distance/100)
+    times_turn_clicks_zero = full_loops
+    start_position = position
+
+    # Moving left
+    if direction == 'L':
+        position -= distance % 100
+        if position < 0:
+            position += 100
+            if (start_position > 0):
+                times_turn_clicks_zero += 1
+
+        if position == 0:
+            times_turn_clicks_zero += 1
+
+
+    # Moving right
+    if direction == 'R':
+        position += distance % 100
+        if position > 99:
+            position -= 100
+            if (start_position > 0):
+                times_turn_clicks_zero += 1
+
+    times_at_zero += times_turn_clicks_zero
+
+print(f'Day 02 - Part 2: {times_at_zero}')
